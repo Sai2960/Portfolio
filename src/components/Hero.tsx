@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface HeroProps {
   onHireMeClick: () => void;
@@ -46,15 +46,7 @@ export default function Hero({ onHireMeClick }: HeroProps) {
             >
               Hire Me <ArrowRight size={20} />
             </motion.button>
-            <motion.a
-              href="/resume.pdf"
-              download="Sai_Sanjay_Chandorkar_Resume.pdf"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-3 md:py-4 bg-charcoal border border-white/10 text-warm-white rounded-2xl font-bold flex items-center gap-2 hover:bg-white/5 transition-colors"
-            >
-              Download CV <Download size={20} />
-            </motion.a>
+
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-center lg:justify-start gap-6 md:gap-8 pt-8">
