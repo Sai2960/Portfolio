@@ -10,9 +10,8 @@ const certifications = [
     date: 'Aug 2025',
     rating: 5,
     bg: '#003087',
-    // Inline SVG as data URI — no external fetch, no referrer block
-    avatar: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'><text x='4' y='28' font-family='Arial' font-weight='bold' font-size='18' fill='white'>JPMorgan</text></svg>`,
-    useText: true,
+    avatar: 'https://i.ibb.co/TxWMq5rq/Jp.png',
+    useText: false,
     textLines: ['JPMorgan', 'Chase & Co.'],
     textColor: '#FFFFFF',
   },
@@ -24,8 +23,8 @@ const certifications = [
     date: 'Aug 2025',
     rating: 5,
     bg: '#86BC25',
-    avatar: '',
-    useText: true,
+    avatar: 'https://i.ibb.co/FZgnBrL/Deloitte.png',
+    useText: false,
     textLines: ['Deloitte'],
     textColor: '#000000',
   },
@@ -37,24 +36,28 @@ const certifications = [
     date: 'Aug 2025',
     rating: 5,
     bg: '#1E3A8A',
-    avatar: '',
-    useText: true,
+    avatar: 'https://i.ibb.co/21dpB44X/Tata.png',
+    useText: false,
     textLines: ['TATA'],
     textColor: '#FFFFFF',
   },
 ];
 
-/** Renders a colored circle with bold initials — works 100% offline, no CORS */
+/** Renders logo image or fallback initials */
 function LogoAvatar({
   org,
   bg,
   textColor,
   textLines,
+  avatar,
+  useText,
 }: {
   org: string;
   bg: string;
   textColor: string;
   textLines: string[];
+  avatar: string;
+  useText: boolean;
 }) {
   const initials =
     textLines.length === 1
@@ -67,16 +70,24 @@ function LogoAvatar({
       style={{ backgroundColor: bg }}
       title={org}
     >
-      <span
-        className="font-black leading-none text-center select-none"
-        style={{
-          color: textColor,
-          fontSize: initials.length <= 2 ? '1rem' : '0.6rem',
-          letterSpacing: '-0.03em',
-        }}
-      >
-        {initials}
-      </span>
+      {!useText && avatar ? (
+        <img
+          src={avatar}
+          alt={org}
+          className="w-full h-full object-contain p-1.5"
+        />
+      ) : (
+        <span
+          className="font-black leading-none text-center select-none"
+          style={{
+            color: textColor,
+            fontSize: initials.length <= 2 ? '1rem' : '0.6rem',
+            letterSpacing: '-0.03em',
+          }}
+        >
+          {initials}
+        </span>
+      )}
     </div>
   );
 }
@@ -132,13 +143,15 @@ export default function Testimonials() {
 
               {/* Footer */}
               <div className="flex items-center gap-4 mt-8 pt-8 border-t border-white/5">
-                {/* ✅ Logo: grayscale by default, color on hover */}
+                {/* Logo: grayscale by default, color on hover */}
                 <div className="grayscale group-hover:grayscale-0 transition-all duration-500">
                   <LogoAvatar
                     org={cert.org}
                     bg={cert.bg}
                     textColor={cert.textColor}
                     textLines={cert.textLines}
+                    avatar={cert.avatar}
+                    useText={cert.useText}
                   />
                 </div>
 
@@ -158,7 +171,7 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* ✅ Extra certs row — NullClass #2 replaced with Palkova IT Solutions */}
+        {/* Extra certs row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
