@@ -7,6 +7,7 @@ const posts = [
     category: 'Case Study',
     date: 'Nov 2025',
     readTime: '5 min read',
+    live: true,
     excerpt: 'A behind-the-scenes look at architecting a video streaming platform with JWT auth, MVC backend, and adaptive playback — built during my NullClass internship.',
     image: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1000&auto=format&fit=crop',
   },
@@ -15,7 +16,8 @@ const posts = [
     category: 'Learning',
     date: 'Coming Soon',
     readTime: '4 min read',
-    excerpt: 'Type safety caught bugs before production. Here\'s what switching from JS to TS taught me about writing scalable code.',
+    live: false,
+    excerpt: "Type safety caught bugs before production. Here's what switching from JS to TS taught me about writing scalable code.",
     image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1000&auto=format&fit=crop',
   },
   {
@@ -23,6 +25,7 @@ const posts = [
     category: 'Tutorial',
     date: 'Coming Soon',
     readTime: '6 min read',
+    live: false,
     excerpt: 'How I implemented live order status updates in SnapCart using Socket.io rooms and MongoDB change streams.',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop',
   },
@@ -57,11 +60,11 @@ export default function Blog() {
               className={`group cursor-pointer ${!post.live ? 'opacity-60' : ''}`}
             >
               <div className="aspect-[16/10] rounded-[2rem] overflow-hidden mb-6 relative border border-white/5">
-                <img 
-                   src={post.image} 
-                   alt={post.title} 
-                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110" 
-                   referrerPolicy="no-referrer"
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-6 left-6 px-4 py-1.5 bg-primary-black/80 backdrop-blur-md rounded-full text-[10px] font-bold uppercase tracking-widest text-accent-orange border border-accent-orange/20">
                   {post.category}
@@ -74,7 +77,7 @@ export default function Blog() {
                   </div>
                 )}
               </div>
-              
+
               <div className="space-y-3">
                 <div className="flex items-center gap-4 text-soft-gray text-xs font-bold uppercase tracking-widest">
                   <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
