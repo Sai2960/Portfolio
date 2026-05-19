@@ -1,5 +1,5 @@
-import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Download } from 'lucide-react';
 
 interface HeroProps {
   onHireMeClick: () => void;
@@ -8,7 +8,6 @@ interface HeroProps {
 export default function Hero({ onHireMeClick }: HeroProps) {
   return (
     <section id="home" className="min-h-screen flex items-center pt-20 pb-32 overflow-hidden relative">
-      {/* Background Elements */}
       <div className="absolute top-1/4 -left-20 w-64 h-64 md:w-96 md:h-96 bg-accent-orange/10 rounded-full blur-[128px] -z-10" />
       <div className="absolute bottom-1/4 -right-20 w-64 h-64 md:w-96 md:h-96 bg-accent-orange/5 rounded-full blur-[128px] -z-10" />
       
@@ -47,19 +46,29 @@ export default function Hero({ onHireMeClick }: HeroProps) {
               Hire Me <ArrowRight size={20} />
             </motion.button>
 
+            {/* Resume download — save your PDF as /public/resume.pdf */}
+            <motion.a
+              href="/resume.pdf"
+              download="Sai_Chandorkar_Resume.pdf"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 md:px-8 py-3 md:py-4 border border-white/20 text-warm-white rounded-2xl font-bold flex items-center gap-2 hover:border-accent-orange/50 hover:text-accent-orange transition-all"
+            >
+              Resume <Download size={20} />
+            </motion.a>
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-center lg:justify-start gap-6 md:gap-8 pt-8">
             <div className="flex -space-x-3">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="w-10 h-10 rounded-full border-2 border-primary-black bg-deep-gray flex items-center justify-center overflow-hidden">
-                  <img src={`https://i.pravatar.cc/100?img=${i + 15}`} alt="client" referrerPolicy="no-referrer" />
+                  <img src={`https://i.pravatar.cc/100?img=${i + 15}`} alt="client avatar" referrerPolicy="no-referrer" />
                 </div>
               ))}
             </div>
             <div className="text-center md:text-left">
               <p className="text-sm font-bold">Industry Certified</p>
-              <p className="text-xs text-soft-gray">Deloitte, JPMorgan, Tata, Intel</p>
+              <p className="text-xs text-soft-gray">Deloitte · JPMorgan · Tata · Intel</p>
             </div>
           </div>
         </motion.div>
@@ -71,17 +80,16 @@ export default function Hero({ onHireMeClick }: HeroProps) {
           className="relative group w-full max-w-[500px] mx-auto"
         >
           <div className="aspect-square rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-deep-gray relative z-10 border border-white/5 shadow-2xl">
+            {/* Save your photo as /public/profile.jpg instead of using ibb.co */}
             <img 
-              src="https://i.ibb.co/by8Rj5t/Blazer-1.jpg" 
-              alt="Sai Sanjay Chandorkar"
+              src="/profile.jpg"
+              alt="Sai Sanjay Chandorkar — Full Stack Developer"
               className="w-full h-full object-cover grayscale-0 hover:grayscale transition-all duration-700"
-              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 border-2 border-accent-orange/20 rounded-[2rem] md:rounded-[3rem] -translate-x-4 translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
             <div className="absolute inset-0 border border-white/10 rounded-[2rem] md:rounded-[3rem] translate-x-4 -translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
           </div>
 
-          {/* Floating Stats - Hidden on Mobile */}
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
@@ -96,8 +104,8 @@ export default function Hero({ onHireMeClick }: HeroProps) {
             transition={{ duration: 5, repeat: Infinity }}
             className="hidden sm:block absolute -bottom-6 -left-6 p-4 glass-card rounded-2xl z-20"
           >
-            <p className="text-2xl font-display font-bold text-accent-orange">85%</p>
-            <p className="text-[10px] text-soft-gray uppercase tracking-widest font-bold">BCA Score</p>
+            <p className="text-2xl font-display font-bold text-accent-orange">8.5</p>
+            <p className="text-[10px] text-soft-gray uppercase tracking-widest font-bold">BCA CGPA / 10</p>
           </motion.div>
         </motion.div>
       </div>

@@ -1,11 +1,11 @@
-import { motion, useInView } from 'motion/react';
+import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 
 const stats = [
   { label: 'Internships Done', value: 2, suffix: '' },
-  { label: 'Projects Completed', value: 10, suffix: '+' },
-  { label: 'Industry Certs', value: 4, suffix: '' },
-  { label: 'BCA Percentage', value: 85, suffix: '%' },
+  { label: 'Projects Deployed', value: 4, suffix: '+' },
+  { label: 'DSA Problems Solved', value: 300, suffix: '+' },
+  { label: 'BCA CGPA', value: 85, suffix: '%' },
 ];
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
