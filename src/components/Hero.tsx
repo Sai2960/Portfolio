@@ -8,10 +8,13 @@ interface HeroProps {
 export default function Hero({ onHireMeClick }: HeroProps) {
   return (
     <section id="home" className="min-h-screen flex items-center pt-20 pb-32 overflow-hidden relative">
+      {/* Ambient glow blobs */}
       <div className="absolute top-1/4 -left-20 w-64 h-64 md:w-96 md:h-96 bg-accent-orange/10 rounded-full blur-[128px] -z-10" />
       <div className="absolute bottom-1/4 -right-20 w-64 h-64 md:w-96 md:h-96 bg-accent-orange/5 rounded-full blur-[128px] -z-10" />
-      
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full relative z-10">
+
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full relative z-10">
+
+        {/* ── LEFT: Text content ── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -72,52 +75,96 @@ export default function Hero({ onHireMeClick }: HeroProps) {
           </div>
         </motion.div>
 
-        {/* ── Image card ── */}
+        {/* ── RIGHT: Premium fitted image card ── */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+          initial={{ opacity: 0, scale: 0.85, rotate: 3 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative group w-full max-w-[500px] mx-auto"
+          className="relative group w-full max-w-[420px] mx-auto"
         >
           {/*
-            KEY FIX: removed `aspect-square` — the fixed square was cropping
-            the portrait photo. Instead we let the image dictate the height
-            with `w-full h-auto` so the full person is always visible.
-            `object-cover object-center` (not object-top) fills the frame
-            without cutting off the head or body.
+            PREMIUM FIX:
+            - Fixed height 520px so the card is always a controlled elegant rectangle
+            - object-cover + object-top keeps face/upper-body fully visible
+            - Soft bottom gradient fade instead of a hard crop — luxury finish
+            - Inner orange rim glow for that premium glass card feel
           */}
-          <div className="rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-deep-gray relative z-10 border border-white/5 shadow-2xl">
+          <div
+            className="relative rounded-[2.5rem] overflow-hidden bg-deep-gray z-10 border border-white/10 shadow-2xl"
+            style={{ width: '100%', height: '520px' }}
+          >
+            {/* Profile photo */}
             <img
               src="/profile.jpg"
               alt="Sai Sanjay Chandorkar — Full Stack Developer"
-              className="w-full h-auto block object-cover object-center grayscale-0 hover:grayscale transition-all duration-700"
+              className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+            />
+
+            {/* Bottom soft fade — premium touch */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+              style={{
+                background: 'linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.3) 60%, transparent 100%)',
+              }}
+            />
+
+            {/* Inner orange rim glow */}
+            <div
+              className="absolute inset-0 rounded-[2.5rem] pointer-events-none"
+              style={{
+                boxShadow:
+                  'inset 0 0 0 1px rgba(255,100,0,0.18), inset 0 -80px 100px rgba(255,100,0,0.06)',
+              }}
             />
           </div>
 
-          {/* Decorative offset borders */}
-          <div className="absolute inset-0 border-2 border-accent-orange/20 rounded-[2rem] md:rounded-[3rem] -translate-x-4 translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
-          <div className="absolute inset-0 border border-white/10 rounded-[2rem] md:rounded-[3rem] translate-x-4 -translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
+          {/* Decorative offset border layers */}
+          <div className="absolute inset-0 rounded-[2.5rem] border-2 border-accent-orange/25 -translate-x-4 translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
+          <div className="absolute inset-0 rounded-[2.5rem] border border-white/10 translate-x-4 -translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
 
           {/* Floating badge — top right */}
           <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="hidden sm:block absolute -top-6 -right-6 p-4 glass-card rounded-2xl z-20"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="hidden sm:block absolute -top-5 -right-5 z-20"
           >
-            <p className="text-2xl font-display font-bold text-accent-orange">2</p>
-            <p className="text-[10px] text-soft-gray uppercase tracking-widest font-bold">Industry Internships</p>
+            <div
+              className="px-4 py-3 rounded-2xl"
+              style={{
+                background: 'rgba(18,18,18,0.88)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(255,100,0,0.2)',
+              }}
+            >
+              <p className="text-2xl font-display font-bold text-accent-orange leading-none">2</p>
+              <p className="text-[9px] text-soft-gray uppercase tracking-widest font-bold mt-0.5">Industry Internships</p>
+            </div>
           </motion.div>
 
           {/* Floating badge — bottom left */}
           <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 5, repeat: Infinity }}
-            className="hidden sm:block absolute -bottom-6 -left-6 p-4 glass-card rounded-2xl z-20"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            className="hidden sm:block absolute -bottom-5 -left-5 z-20"
           >
-            <p className="text-2xl font-display font-bold text-accent-orange">8.5</p>
-            <p className="text-[10px] text-soft-gray uppercase tracking-widest font-bold">BCA CGPA / 10</p>
+            <div
+              className="px-4 py-3 rounded-2xl"
+              style={{
+                background: 'rgba(18,18,18,0.88)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(255,100,0,0.2)',
+              }}
+            >
+              <p className="text-2xl font-display font-bold text-accent-orange leading-none">8.5</p>
+              <p className="text-[9px] text-soft-gray uppercase tracking-widest font-bold mt-0.5">BCA CGPA / 10</p>
+            </div>
           </motion.div>
         </motion.div>
+
       </div>
     </section>
   );
