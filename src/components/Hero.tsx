@@ -84,7 +84,7 @@ export default function Hero({ onHireMeClick }: HeroProps) {
             <img 
               src="/profile.jpg"
               alt="Sai Sanjay Chandorkar — Full Stack Developer"
-              className="w-full h-full object-cover grayscale-0 hover:grayscale transition-all duration-700"
+              className="w-full h-full object-cover object-top grayscale-0 hover:grayscale transition-all duration-700"
             />
             <div className="absolute inset-0 border-2 border-accent-orange/20 rounded-[2rem] md:rounded-[3rem] -translate-x-4 translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
             <div className="absolute inset-0 border border-white/10 rounded-[2rem] md:rounded-[3rem] translate-x-4 -translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
