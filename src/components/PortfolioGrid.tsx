@@ -1,60 +1,83 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
-import { Project } from '../types';
+
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  category: string;
+  github: string;
+  live: string;
+}
 
 const projects: Project[] = [
   {
     id: '1',
-    title: 'Vybe - Social Media',
-    description: 'Instagram-inspired platform with JWT auth, real-time Stories, Reels, and recommendation algorithms.',
-    image: 'https://i.ibb.co/Fbfs2t4v/favicon.png',
+    title: 'Vybee — Social Media',
+    description: 'Instagram-inspired platform with JWT auth, real-time Stories, Reels, and a social follow/unfollow graph. Firebase Storage handles media.',
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000&auto=format&fit=crop',
     tags: ['React', 'Node.js', 'MongoDB', 'Firebase'],
     category: 'Full Stack',
+    github: 'https://github.com/Sai2960/Social-Media',
+    live: 'https://social-media-1-bu2v.onrender.com',
   },
   {
     id: '2',
     title: 'YouTube Clone',
-    description: 'Video sharing platform with upload/playback, likes, comments, and subscriptions.',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/YouTube_social_white_square_%282024%29.svg/1280px-YouTube_social_white_square_%282024%29.svg.png',
-    tags: ['TypeScript', 'React', 'Express'],
-    category: 'Web App',
+    description: 'Scalable video-sharing platform with JWT auth, adaptive video playback, threaded comments, channel subscriptions, and search.',
+    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1000&auto=format&fit=crop',
+    tags: ['TypeScript', 'React', 'Node.js', 'MongoDB'],
+    category: 'Full Stack',
+    github: 'https://github.com/Sai2960/youtube-clone-project',
+    live: 'https://youtube-clone-project-eosin.vercel.app',
   },
   {
     id: '3',
     title: 'SnapCart E-Commerce',
-    description: 'Grocery shopping app with product catalogue, cart, and order tracking.',
+    description: 'Full-stack grocery platform with JWT auth, RBAC admin dashboard, dynamic product catalogue, cart, and real-time order tracking via Socket.io.',
     image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop',
-    tags: ['React', 'MySQL', 'REST API'],
+    tags: ['Next.js', 'MongoDB', 'Socket.io', 'JWT'],
     category: 'Full Stack',
+    github: 'https://github.com/Sai2960/snapcart',
+    live: 'https://snapcart-lake.vercel.app',
   },
   {
     id: '4',
-    title: 'AI College Bot',
-    description: 'Intelligent chatbot with NLP-based intent recognition for admissions and courses.',
-    image: 'https://wp.sfdcdigital.com/en-us/wp-content/uploads/sites/4/2025/03/marquee-agentforce-ai-chatbot.png?w=1024',
-    tags: ['JavaScript', 'NLP', 'Full Stack'],
+    title: 'AI College Chatbot',
+    description: 'NLP-powered chatbot covering 15+ intent categories with ~89% query resolution accuracy, admin panel, and graceful fallback handling.',
+    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=1000&auto=format&fit=crop',
+    tags: ['React', 'Node.js', 'NLP', 'MongoDB'],
     category: 'Web App',
+    github: 'https://github.com/Sai2960/college-chatbot',
+    live: 'https://preeminent-torrone-ae055a.netlify.app',
   },
   {
     id: '5',
     title: 'Rydex Booking App',
-    description: 'Ride-hailing clone featuring real-time booking, fare estimation, and separate dashboards.',
-    image: 'https://static.vecteezy.com/system/resources/previews/004/305/696/non_2x/car-booking-concept-neumorphic-templates-set-transportation-services-choice-of-vehicles-rating-of-drivers-ui-ux-gui-screens-for-responsive-mobile-app-design-kit-in-neumorphism-style-vector.jpg',
+    description: 'Ride-hailing clone featuring real-time booking, fare estimation, Maps API integration, and separate driver/rider dashboards.',
+    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1200&auto=format&fit=crop',
     tags: ['Maps API', 'React', 'Node.js'],
-    category: 'Full Stack',
+    category: 'Web App',
+    github: 'https://github.com/Sai2960',
+    live: '#',
   },
   {
     id: '6',
     title: 'Hospital Management',
-    description: 'Java desktop app for patient registration and appointment scheduling.',
+    description: 'Java desktop application for patient registration, appointment scheduling, and record management using OOP principles.',
     image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop',
     tags: ['Java', 'MySQL', 'OOP'],
     category: 'Web App',
+    github: 'https://github.com/Sai2960',
+    live: '#',
   },
 ];
 
-const categories = ['All', 'Web App', 'UI Design', 'Branding', 'Full Stack', 'Mobile'];
+// Only categories that actually exist in projects
+const categories = ['All', 'Full Stack', 'Web App'];
 
 export default function PortfolioGrid() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -72,7 +95,7 @@ export default function PortfolioGrid() {
               Featured <span className="text-accent-orange">Projects</span>
             </h2>
             <p className="text-soft-gray max-w-sm">
-              Explore my latest work across web development, design, and branding.
+              Production-deployed applications across full stack web development and AI.
             </p>
           </div>
 
@@ -115,11 +138,11 @@ export default function PortfolioGrid() {
                   referrerPolicy="no-referrer"
                 />
                 
-                <div className="absolute inset-0 bg-linear-to-t from-primary-black via-primary-black/70 to-transparent opacity-60 group-hover:opacity-90 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-black via-primary-black/70 to-transparent opacity-60 group-hover:opacity-90 transition-opacity" />
                 
                 <div className="absolute inset-0 p-8 flex flex-col justify-end translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
                   <div className="space-y-3">
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                        {project.tags.map(tag => (
                          <span key={tag} className="text-[10px] uppercase font-bold text-accent-orange bg-accent-orange/10 px-2 py-1 rounded-md">
                            {tag}
@@ -131,12 +154,32 @@ export default function PortfolioGrid() {
                       {project.description}
                     </p>
                     <div className="flex gap-4 pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                       <button className="p-3 bg-accent-orange rounded-full text-white glow-orange">
-                         <ExternalLink size={20} />
-                       </button>
-                       <button className="p-3 bg-white/10 rounded-full text-white hover:bg-white/20 backdrop-blur-md">
+                       {/* Live demo link */}
+                       {project.live !== '#' ? (
+                         <a
+                           href={project.live}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label={`Live demo of ${project.title}`}
+                           className="p-3 bg-accent-orange rounded-full text-white glow-orange hover:opacity-80 transition-opacity"
+                         >
+                           <ExternalLink size={20} />
+                         </a>
+                       ) : (
+                         <span className="p-3 bg-white/10 rounded-full text-soft-gray cursor-not-allowed" title="Live demo coming soon">
+                           <ExternalLink size={20} />
+                         </span>
+                       )}
+                       {/* GitHub link */}
+                       <a
+                         href={project.github}
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         aria-label={`GitHub repo for ${project.title}`}
+                         className="p-3 bg-white/10 rounded-full text-white hover:bg-white/20 backdrop-blur-md transition-colors"
+                       >
                          <Github size={20} />
-                       </button>
+                       </a>
                     </div>
                   </div>
                 </div>
