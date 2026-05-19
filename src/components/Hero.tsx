@@ -46,7 +46,6 @@ export default function Hero({ onHireMeClick }: HeroProps) {
               Hire Me <ArrowRight size={20} />
             </motion.button>
 
-            {/* Resume download — save your PDF as /public/resume.pdf */}
             <motion.a
               href="/resume.pdf"
               download="Sai_Chandorkar_Resume.pdf"
@@ -73,23 +72,33 @@ export default function Hero({ onHireMeClick }: HeroProps) {
           </div>
         </motion.div>
 
+        {/* ── Image card ── */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
           className="relative group w-full max-w-[500px] mx-auto"
         >
-          <div className="aspect-square rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-deep-gray relative z-10 border border-white/5 shadow-2xl">
-            {/* Save your photo as /public/profile.jpg instead of using ibb.co */}
-            <img 
+          {/*
+            KEY FIX: removed `aspect-square` — the fixed square was cropping
+            the portrait photo. Instead we let the image dictate the height
+            with `w-full h-auto` so the full person is always visible.
+            `object-cover object-center` (not object-top) fills the frame
+            without cutting off the head or body.
+          */}
+          <div className="rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-deep-gray relative z-10 border border-white/5 shadow-2xl">
+            <img
               src="/profile.jpg"
               alt="Sai Sanjay Chandorkar — Full Stack Developer"
-              className="w-full h-full object-cover object-top grayscale-0 hover:grayscale transition-all duration-700"
+              className="w-full h-auto block object-cover object-center grayscale-0 hover:grayscale transition-all duration-700"
             />
-            <div className="absolute inset-0 border-2 border-accent-orange/20 rounded-[2rem] md:rounded-[3rem] -translate-x-4 translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
-            <div className="absolute inset-0 border border-white/10 rounded-[2rem] md:rounded-[3rem] translate-x-4 -translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
           </div>
 
+          {/* Decorative offset borders */}
+          <div className="absolute inset-0 border-2 border-accent-orange/20 rounded-[2rem] md:rounded-[3rem] -translate-x-4 translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
+          <div className="absolute inset-0 border border-white/10 rounded-[2rem] md:rounded-[3rem] translate-x-4 -translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
+
+          {/* Floating badge — top right */}
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
@@ -99,6 +108,7 @@ export default function Hero({ onHireMeClick }: HeroProps) {
             <p className="text-[10px] text-soft-gray uppercase tracking-widest font-bold">Industry Internships</p>
           </motion.div>
 
+          {/* Floating badge — bottom left */}
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 5, repeat: Infinity }}
