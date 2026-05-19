@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { ExternalLink, Github } from 'lucide-react';
 
 interface Project {
@@ -18,7 +18,7 @@ const projects: Project[] = [
     id: '1',
     title: 'Vybee — Social Media',
     description: 'Instagram-inspired platform with JWT auth, real-time Stories, Reels, and a social follow/unfollow graph. Firebase Storage handles media.',
-    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://i.ibb.co/Fbfs2t4v/favicon.png',
     tags: ['React', 'Node.js', 'MongoDB', 'Firebase'],
     category: 'Full Stack',
     github: 'https://github.com/Sai2960/Social-Media',
@@ -28,7 +28,7 @@ const projects: Project[] = [
     id: '2',
     title: 'YouTube Clone',
     description: 'Scalable video-sharing platform with JWT auth, adaptive video playback, threaded comments, channel subscriptions, and search.',
-    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/YouTube_social_white_square_%282024%29.svg/1280px-YouTube_social_white_square_%282024%29.svg.png',
     tags: ['TypeScript', 'React', 'Node.js', 'MongoDB'],
     category: 'Full Stack',
     github: 'https://github.com/Sai2960/youtube-clone-project',
@@ -48,7 +48,7 @@ const projects: Project[] = [
     id: '4',
     title: 'AI College Chatbot',
     description: 'NLP-powered chatbot covering 15+ intent categories with ~89% query resolution accuracy, admin panel, and graceful fallback handling.',
-    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://wp.sfdcdigital.com/en-us/wp-content/uploads/sites/4/2025/03/marquee-agentforce-ai-chatbot.png?w=1024',
     tags: ['React', 'Node.js', 'NLP', 'MongoDB'],
     category: 'Web App',
     github: 'https://github.com/Sai2960/college-chatbot',
@@ -58,7 +58,7 @@ const projects: Project[] = [
     id: '5',
     title: 'Rydex Booking App',
     description: 'Ride-hailing clone featuring real-time booking, fare estimation, Maps API integration, and separate driver/rider dashboards.',
-    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://static.vecteezy.com/system/resources/previews/004/305/696/non_2x/car-booking-concept-neumorphic-templates-set-transportation-services-choice-of-vehicles-rating-of-drivers-ui-ux-gui-screens-for-responsive-mobile-app-design-kit-in-neumorphism-style-vector.jpg',
     tags: ['Maps API', 'React', 'Node.js'],
     category: 'Web App',
     github: 'https://github.com/Sai2960',
