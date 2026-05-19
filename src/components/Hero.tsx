@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 
 interface HeroProps {
   onHireMeClick: () => void;
@@ -47,6 +47,16 @@ export default function Hero({ onHireMeClick }: HeroProps) {
               Hire Me <ArrowRight size={20} />
             </motion.button>
 
+            {/* Resume download — save your PDF as /public/resume.pdf */}
+            <motion.a
+              href="/resume.pdf"
+              download="Sai_Chandorkar_Resume.pdf"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 md:px-8 py-3 md:py-4 border border-white/20 text-warm-white rounded-2xl font-bold flex items-center gap-2 hover:border-accent-orange/50 hover:text-accent-orange transition-all"
+            >
+              Resume <Download size={20} />
+            </motion.a>
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-center lg:justify-start gap-6 md:gap-8 pt-8">
@@ -96,8 +106,8 @@ export default function Hero({ onHireMeClick }: HeroProps) {
             transition={{ duration: 5, repeat: Infinity }}
             className="hidden sm:block absolute -bottom-6 -left-6 p-4 glass-card rounded-2xl z-20"
           >
-            <p className="text-2xl font-display font-bold text-accent-orange">85%</p>
-            <p className="text-[10px] text-soft-gray uppercase tracking-widest font-bold">BCA Score</p>
+            <p className="text-2xl font-display font-bold text-accent-orange">8.5</p>
+            <p className="text-[10px] text-soft-gray uppercase tracking-widest font-bold">BCA CGPA / 10</p>
           </motion.div>
         </motion.div>
       </div>
