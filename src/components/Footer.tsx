@@ -1,5 +1,5 @@
 import { ArrowUp } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -22,7 +22,29 @@ export default function Footer() {
             <a href="#about" className="hover:text-accent-orange transition-colors">About</a>
             <a href="#projects" className="hover:text-accent-orange transition-colors">Projects</a>
             <a href="#services" className="hover:text-accent-orange transition-colors">Services</a>
-            <a href="#contact" className="hover:text-accent-orange transition-colors">Contact</a>
+            <a href="#testimonials" className="hover:text-accent-orange transition-colors">Certifications</a>
+            <a href="#blog" className="hover:text-accent-orange transition-colors">Blog</a>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/Sai2960"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="text-soft-gray hover:text-accent-orange transition-colors text-sm font-medium"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com/in/sai-chandorkar"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="text-soft-gray hover:text-accent-orange transition-colors text-sm font-medium"
+            >
+              LinkedIn
+            </a>
           </div>
 
           <div className="flex items-center gap-6">
@@ -31,6 +53,7 @@ export default function Footer() {
               onClick={scrollToTop}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              aria-label="Scroll to top"
               className="w-12 h-12 rounded-full bg-charcoal border border-white/10 flex items-center justify-center text-accent-orange hover:bg-accent-orange hover:text-white transition-all"
             >
               <ArrowUp size={20} />
