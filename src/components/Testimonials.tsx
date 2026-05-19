@@ -6,25 +6,28 @@ const certifications = [
     org: 'JPMorgan Chase & Co.',
     role: 'Software Engineering Job Simulation',
     content: 'Completed enterprise-level simulations involving Kafka, H2 database integration, and REST API controller development — skills used in real JPMorgan production systems.',
-    avatar: 'https://logo.clearbit.com/jpmorganchase.com',
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/a/af/J_P_Morgan_Logo_2008_1.svg',
     date: 'Aug 2025',
     rating: 5,
+    bg: '#003087',
   },
   {
     org: 'Deloitte',
     role: 'Data Analytics Capstone',
     content: 'Applied data framing and visual design strategies for communicating analytical insights effectively to business stakeholders in a real-world consulting simulation.',
-    avatar: 'https://logo.clearbit.com/deloitte.com',
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Deloitte.svg',
     date: 'Aug 2025',
     rating: 5,
+    bg: '#86BC25',
   },
   {
     org: 'Tata Group',
     role: 'Data Visualisation via Forage',
     content: 'Mastered interactive data visualisation and storytelling techniques to empower business decision-making — completed as part of Tata\'s professional simulation program.',
-    avatar: 'https://logo.clearbit.com/tata.com',
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/8/8e/Tata_logo.svg',
     date: 'Aug 2025',
     rating: 5,
+    bg: '#1E3A8A',
   },
 ];
 
@@ -68,7 +71,7 @@ export default function Testimonials() {
               </div>
 
               <div className="flex items-center gap-4 mt-8 pt-8 border-t border-white/5">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-1 grayscale group-hover:grayscale-0 transition-all duration-500 flex-shrink-0">
+                <div className="w-12 h-12 rounded-full overflow-hidden p-1.5 grayscale group-hover:grayscale-0 transition-all duration-500 flex-shrink-0 flex items-center justify-center" style={{ backgroundColor: cert.bg }}>
                   <img src={cert.avatar} alt={cert.org} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                 </div>
                 <div>

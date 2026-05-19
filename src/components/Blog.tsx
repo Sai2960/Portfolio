@@ -9,7 +9,6 @@ const posts = [
     readTime: '5 min read',
     excerpt: 'A behind-the-scenes look at architecting a video streaming platform with JWT auth, MVC backend, and adaptive playback — built during my NullClass internship.',
     image: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1000&auto=format&fit=crop',
-    live: true,
   },
   {
     title: 'Why TypeScript Made Me a Better JavaScript Developer',
@@ -18,7 +17,6 @@ const posts = [
     readTime: '4 min read',
     excerpt: 'Type safety caught bugs before production. Here\'s what switching from JS to TS taught me about writing scalable code.',
     image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1000&auto=format&fit=crop',
-    live: false,
   },
   {
     title: 'Socket.io + MongoDB: Building Real-Time Order Tracking',
@@ -27,7 +25,6 @@ const posts = [
     readTime: '6 min read',
     excerpt: 'How I implemented live order status updates in SnapCart using Socket.io rooms and MongoDB change streams.',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop',
-    live: false,
   },
 ];
 
