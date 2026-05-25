@@ -1,14 +1,16 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Instagram, Linkedin, Github, Briefcase, X, ArrowLeft, Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 interface ContactProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-// ✅ Sign up free at formspree.io, create a form, and replace this with your form ID
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const SERVICE_ID = 'service_9c5suga';
+const TEMPLATE_ID = 'template_94k7k99';
+const PUBLIC_KEY = 'zItEwaVhdCpuT7fMV';
 
 export default function Contact({ isOpen, onClose }: ContactProps) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -22,19 +24,13 @@ export default function Contact({ isOpen, onClose }: ContactProps) {
     e.preventDefault();
     setStatus('sending');
     const form = e.currentTarget;
+
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
-      if (res.ok) {
-        setStatus('success');
-        form.reset();
-      } else {
-        setStatus('error');
-      }
-    } catch {
+      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY);
+      setStatus('success');
+      form.reset();
+    } catch (error) {
+      console.error('EmailJS error:', error);
       setStatus('error');
     }
   };
@@ -111,7 +107,6 @@ export default function Contact({ isOpen, onClose }: ContactProps) {
                   ))}
                 </div>
 
-                {/* ✅ FIXED: Only real social links */}
                 <div className="flex gap-4 pt-4">
                   {[
                     { icon: Linkedin, href: 'https://linkedin.com/in/sai-chandorkar', label: 'LinkedIn' },
