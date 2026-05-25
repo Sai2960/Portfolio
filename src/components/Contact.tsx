@@ -20,21 +20,33 @@ export default function Contact({ isOpen, onClose }: ContactProps) {
     return () => { document.body.style.overflow = 'unset'; };
   }, [isOpen]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus('sending');
-    const form = e.currentTarget;
+ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setStatus('sending');
+  const form = e.currentTarget;
+  const formData = new FormData(form);
 
-    try {
-      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY);
+  try {
+    const res = await fetch('/.netlify/functions/sendEmail', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: formData.get('name'),
+        company: formData.get('company'),
+        email: formData.get('email'),
+        role: formData.get('role'),
+        message: formData.get('message'),
+      }),
+    });
+    if (res.ok) {
       setStatus('success');
       form.reset();
-    } catch (error) {
-      console.error('EmailJS error:', error);
+    } else {
       setStatus('error');
     }
-  };
-
+  } catch {
+    setStatus('error');
+  }
+};
   return (
     <AnimatePresence>
       {isOpen && (
