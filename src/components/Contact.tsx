@@ -8,7 +8,7 @@ interface ContactProps {
   onClose: () => void;
 }
 
-const SERVICE_ID = 'service_9c5suga';
+const SERVICE_ID = 'service_51604jo';
 const TEMPLATE_ID = 'template_94k7k99';
 const PUBLIC_KEY = 'zItEwaVhdCpuT7fMV';
 
